@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Gear Details</h1>
+    <div>
+        <div>
+            <span>Model: {{gear.gear_name}} </span>
+            <p>Brand: {{gear.gear_brand}} </p>
+            <p>Description: {{gear.description}} </p>
+            <p>Year Released: {{gear.release_year}} </p>
+        </div>
+
+{% endblock  %}

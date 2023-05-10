@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import DetailView
-from .models import Song
+from django.views.generic import DetailView, ListView
+from .models import Gear, Song
 
 # Create your views here.
 
@@ -28,3 +28,13 @@ class SongUpdate(UpdateView):
 class SongDelete(DeleteView):
     model = Song
     success_url = '/songs'
+
+class GearList(ListView):
+    model = Gear
+
+class GearDetail(DetailView):
+    model = Gear
+
+class GearCreate(CreateView):
+    model = Gear
+    fields = '__all__'

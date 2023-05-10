@@ -3,6 +3,7 @@
 {% block content %}
 
 <h1>Songs</h1>
+<button><a href="{% url 'songs_create' %}">Add a Song</a></button>
 
 {% for song in songs %}
 <a href=" {% url 'songs_detail' song.id %} ">
@@ -13,6 +14,5 @@
   </div>
 </a>
 {% endfor %}
-  <li><a href="{% url 'songs_create' %}">Add a Song</a></li>
   
 {% endblock  %}

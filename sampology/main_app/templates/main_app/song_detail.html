@@ -7,6 +7,22 @@
             <p>Name: {{song.name}} </p>
             <p>Release Date: {{song.release_date}} </p>
         </div>
+
+        <div>
+            <h1>Gear Used</h1>
+            {% if song.gear_used.count %}
+                {% for gear in song.gear_used.all  %}
+                    <div class="gear-item">
+                        <span>Model: {{gear.gear_name}} </span>
+                        <p>Brand: {{gear.gear_brand}} </p>
+                    </div>
+                
+                {% endfor %}
+            {% else %}
+            <h5>No Gear Added Yet</h5>
+            {% endif %}
+        </div> 
+
         <div>
             <a href=" {% url 'songs_update' song.id %} ">Edit</a>
             <a href=" {% url 'songs_delete' song.id %} ">Delete</a>

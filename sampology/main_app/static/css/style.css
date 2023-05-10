@@ -116,3 +116,19 @@ html {
   .song-item p {
     margin: 0;
   }
+
+  .gear-item {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gear-item h2 {
+    margin: 0;
+  }
+  
+  .gear-item p {
+    margin: 0;
+  }

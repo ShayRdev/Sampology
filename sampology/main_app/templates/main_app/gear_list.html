@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Gear List</h1>
+<button> <a href=" {% url 'gears_create' %} ">Add Gear</a> </button>
+{% for gear in gear_list %}
+<a href=" {% url 'gears_detail' gear.id %} ">
+    <div class="gear-item">
+        <h2>{{gear.gear_name}} </h2>
+        <p>Brand: {{gear.gear_brand}} </p>
+    </div>
+</a>
+{% endfor %}
+
+{% endblock  %}
