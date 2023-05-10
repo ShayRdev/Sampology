@@ -13,3 +13,15 @@ class Song(models.Model):
     def get_absolute_url(self):
         return reverse("index")
     
+class Gear(models.Model):
+    gear_name = models.CharField(max_length=100)
+    gear_brand = models.CharField(max_length=100)
+    description = models.TextField(max_length=250)
+    release_year = models.IntegerField()
+
+    def __str__(self):
+        return self.gear_name
+    
+    def get_absolute_url(self):
+        return reverse("gears_detail", kwargs={'pk': self.id})
+    
