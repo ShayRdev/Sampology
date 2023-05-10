@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% block content %}
+
+<h1>Songs</h1>
+
+{% for song in songs %}
+<a href=" {% url 'songs_detail' song.id %} ">
+  <div class="song-item">
+    <h2>{{ song.name }}</h2>
+    <p>By {{ song.artist }}</p>
+    <p>Released on {{ song.release_date }}</p>
+  </div>
+</a>
+{% endfor %}
+  <li><a href="{% url 'songs_create' %}">Add a Song</a></li>
+  
+{% endblock  %}

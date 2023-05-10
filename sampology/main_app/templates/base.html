@@ -1,0 +1,27 @@
+{% load bootstrap5 %}
+{% load static  %}
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sampology</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <li> <a href=" {% url 'index' %} ">Songs</a></li>
+        <li> <a href=" {% url 'home' %} ">Home</a></li>
+    </nav>
+    <main> 
+        {% block content %}
+
+        {% endblock %}
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
