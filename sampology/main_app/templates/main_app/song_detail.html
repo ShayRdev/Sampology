@@ -22,10 +22,22 @@
             <h5>No Gear Added Yet</h5>
             {% endif %}
         </div> 
-
+            <div>
+                <h3>Add Gear</h3>
+                    {% for gear in gear_used.all %}
+                    <div class="gear-item">
+                        <span>Model: {{gear.gear_name}} </span>
+                        <p>Brand: {{gear.gear_brand}} </p>
+                    </div>
+                    <form action=" {% url 'assoc_gear' song.id gear.id %} " method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Add</button>
+                    </form>
+                    {% endfor %}
+            </div>
         <div>
-            <a href=" {% url 'songs_update' song.id %} ">Edit</a>
-            <a href=" {% url 'songs_delete' song.id %} ">Delete</a>
+            <button><a href=" {% url 'songs_update' song.id %} ">Edit Song</a></button>
+            <button><a href=" {% url 'songs_delete' song.id %} ">Delete Song</a></button>
         </div>
     </div>
 

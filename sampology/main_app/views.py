@@ -14,8 +14,15 @@ def songs_index(request):
         'songs': songs
      })
 
-class SongDetail(DetailView):
-    model = Song
+def song_detail(request, song_id):
+    song = Song.objects.get(id=song_id)
+    id_list = song.gear_used.all().values_list('id')
+    gear_used_song_doesnt_have = Gear.objects.exclude(id__in=id_list)
+    return render(request, 'main_app/song_detail.html', {
+        'song': song,
+        'gear_used': gear_used_song_doesnt_have
+    })
+
 
 class SongCreate(CreateView):
     model = Song
@@ -38,3 +45,7 @@ class GearDetail(DetailView):
 class GearCreate(CreateView):
     model = Gear
     fields = '__all__'
+
+def assoc_gear(request, song_id, gear_id):
+    Song.objects.get(id=song_id).gear_used.add(gear_id)
+    return redirect('songs_detail', song_id=song_id)
