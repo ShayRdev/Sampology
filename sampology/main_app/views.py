@@ -49,3 +49,7 @@ class GearCreate(CreateView):
 def assoc_gear(request, song_id, gear_id):
     Song.objects.get(id=song_id).gear_used.add(gear_id)
     return redirect('songs_detail', song_id=song_id)
+
+def unassoc_gear(request, song_id, gear_id):
+    Song.objects.get(id=song_id).gear_used.remove(gear_id)
+    return redirect('songs_detail', song_id=song_id)

@@ -13,10 +13,13 @@
             {% if song.gear_used.count %}
                 {% for gear in song.gear_used.all  %}
                     <div class="gear-item">
-                        <span>Model: {{gear.gear_name}} </span>
-                        <p>Brand: {{gear.gear_brand}} </p>
+                        <span>{{gear.gear_brand}} {{gear.gear_name}} </span>
+                        <form action=" {% url 'unassoc_gear' song.id gear.id %} " method="POST">
+                            {% csrf_token %}
+                            <button type="submit" >Remove</button>
+                        </form>
                     </div>
-                
+                    
                 {% endfor %}
             {% else %}
             <h5>No Gear Added Yet</h5>
@@ -26,13 +29,12 @@
                 <h3>Add Gear</h3>
                     {% for gear in gear_used.all %}
                     <div class="gear-item">
-                        <span>Model: {{gear.gear_name}} </span>
-                        <p>Brand: {{gear.gear_brand}} </p>
+                        <span>{{gear.gear_brand}} {{gear.gear_name}} </span>
+                        <form action=" {% url 'assoc_gear' song.id gear.id %} " method="POST">
+                            {% csrf_token %}
+                            <button type="submit">Add</button>
+                        </form>
                     </div>
-                    <form action=" {% url 'assoc_gear' song.id gear.id %} " method="POST">
-                        {% csrf_token %}
-                        <button type="submit">Add</button>
-                    </form>
                     {% endfor %}
             </div>
         <div>
