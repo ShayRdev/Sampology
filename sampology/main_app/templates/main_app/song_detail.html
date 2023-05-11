@@ -1,46 +1,64 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h1>Song Detail</h1>
-    <div>
-        <div>
-            <span>Artist: {{song.artist}} </span>
-            <p>Name: {{song.name}} </p>
-            <p>Release Date: {{song.release_date}} </p>
+    <h1>{{ song.artist }} - {{ song.name }}</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Release Date:</label>
+                <p>{{ song.release_date }}</p>
+            </div>
+
+            <div class="mb-3">
+                <h3>Gear Used</h3>
+                {% if song.gear_used.count %}
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        {% for gear in song.gear_used.all %}
+                            <div class="col">
+                                <div class="card">
+                                    <img src="..." class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ gear.gear_brand }} {{ gear.gear_name }}</h5>
+                                        <form action="{% url 'unassoc_gear' song.id gear.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Remove</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <h5>No Gear Added Yet</h5>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <h3>Add Gear</h3>
+                <div class="row">
+                    {% for gear in gear_used.all %}
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ gear.gear_brand }} {{ gear.gear_name }}</h5>
+                                    <form action="{% url 'assoc_gear' song.id gear.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
-        <div>
-            <h1>Gear Used</h1>
-            {% if song.gear_used.count %}
-                {% for gear in song.gear_used.all  %}
-                    <div class="gear-item">
-                        <span>{{gear.gear_brand}} {{gear.gear_name}} </span>
-                        <form action=" {% url 'unassoc_gear' song.id gear.id %} " method="POST">
-                            {% csrf_token %}
-                            <button type="submit" >Remove</button>
-                        </form>
-                    </div>
-                    
-                {% endfor %}
-            {% else %}
-            <h5>No Gear Added Yet</h5>
-            {% endif %}
-        </div> 
-            <div>
-                <h3>Add Gear</h3>
-                    {% for gear in gear_used.all %}
-                    <div class="gear-item">
-                        <span>{{gear.gear_brand}} {{gear.gear_name}} </span>
-                        <form action=" {% url 'assoc_gear' song.id gear.id %} " method="POST">
-                            {% csrf_token %}
-                            <button type="submit">Add</button>
-                        </form>
-                    </div>
-                    {% endfor %}
+        <div class="col-md-6">
+            <div class="mb-3">
+                <button class="btn btn-primary"><a href="{% url 'songs_update' song.id %}" class="text-white">Edit Song</a></button>
+                <button class="btn btn-danger"><a href="{% url 'songs_delete' song.id %}" class="text-white">Delete Song</a></button>
             </div>
-        <div>
-            <button><a href=" {% url 'songs_update' song.id %} ">Edit Song</a></button>
-            <button><a href=" {% url 'songs_delete' song.id %} ">Delete Song</a></button>
         </div>
     </div>
-
 {% endblock %}
