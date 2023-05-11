@@ -1,21 +1,26 @@
 {% load static  %}
 
+
 <!DOCTYPE html>
 <html lang="">
-<head>
-  <meta charset="UTF-8" />
-  <title>Sampology</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sampology</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="description" content="" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
 <body>
-    <nav>
-        <li> <a href=" {% url 'index' %} ">Songs</a></li>
-        <li> <a href=" {% url 'home' %} ">Home</a></li>
-        <li> <a href=" {% url 'gears_index' %} ">Gear</a></li>
-    </nav>
-    <main> 
+    <nav class="navbar bg-primary d-flex justify-content-start">
+        <a href="{% url 'index' %}" class="text-white me-4">Songs</a>
+        <a href="{% url 'home' %}" class="text-white me-4">Home</a>
+        <a href="{% url 'gears_index' %}" class="text-white me-4">Gear</a>
+    </nav> 
+
+    <main class="container"> 
         {% block content %}
 
         {% endblock %}

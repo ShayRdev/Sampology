@@ -2,17 +2,27 @@
 {% load bootstrap5 %}
 {% block content %}
 
-<h1>Songs</h1>
-<button><a href="{% url 'songs_create' %}">Add a Song</a></button>
+<h1 class="mb-4">Songs</h1>
 
-{% for song in songs %}
-<a href=" {% url 'songs_detail' song.id %} ">
-  <div class="song-item">
-    <h2>{{ song.name }}</h2>
-    <p>By {{ song.artist }}</p>
-    <p>Released on {{ song.release_date }}</p>
-  </div>
-</a>
-{% endfor %}
-  
-{% endblock  %}
+<div class="mb-4">
+  <a href="{% url 'songs_create' %}" class="btn btn-primary">Add a Song</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for song in songs %}
+    <div class="col">
+      <a href="{% url 'songs_detail' song.id %}" class="card-link">
+        <div class="card">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ song.name }}</h5>
+            <p class="card-text">By {{ song.artist }}</p>
+            <p class="card-text"><small class="text-muted">Released on {{ song.release_date }}</small></p>
+          </div>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

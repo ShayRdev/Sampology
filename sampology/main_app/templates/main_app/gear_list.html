@@ -1,15 +1,27 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
+
 {% block content %}
 
-<h1>Gear List</h1>
-<button> <a href=" {% url 'gears_create' %} ">Add Gear</a> </button>
-{% for gear in gear_list %}
-<a href=" {% url 'gears_detail' gear.id %} ">
-    <div class="gear-item">
-        <h2>{{gear.gear_name}} </h2>
-        <p>Brand: {{gear.gear_brand}} </p>
-    </div>
-</a>
-{% endfor %}
+<h1 class="mb-4">Gear List</h1>
 
-{% endblock  %}
+<div class="mb-3">
+  <a href="{% url 'gears_create' %}" class="btn btn-primary">Add Gear</a>
+</div>
+
+<div class="row">
+  {% for gear in gear_list %}
+    <div class="col-md-4">
+      <a href="{% url 'gears_detail' gear.id %}" class="text-decoration-none">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">{{ gear.gear_name }}</h5>
+            <p class="card-text">Brand: {{ gear.gear_brand }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
