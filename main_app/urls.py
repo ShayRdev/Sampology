@@ -13,4 +13,5 @@ urlpatterns = [
     path("gear/create", views.GearCreate.as_view(), name="gears_create"),
     path("songs/<int:song_id>/assoc_gear/<int:gear_id>/", views.assoc_gear, name="assoc_gear"),
     path("songs/<int:song_id>/unassoc_gear/<int:gear_id>/", views.unassoc_gear, name="unassoc_gear"),
+    path('accounts/signup/', views.signup, name='signup'),
 ]

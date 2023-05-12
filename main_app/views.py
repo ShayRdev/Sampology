@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, ListView
 from .models import Gear, Song
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 
@@ -26,7 +28,12 @@ def song_detail(request, song_id):
 
 class SongCreate(CreateView):
     model = Song
-    fields = '__all__'
+    fields = ['artist', 'name', 'release_date',]
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class SongUpdate(UpdateView):
     model = Song
@@ -53,3 +60,17 @@ def assoc_gear(request, song_id, gear_id):
 def unassoc_gear(request, song_id, gear_id):
     Song.objects.get(id=song_id).gear_used.remove(gear_id)
     return redirect('songs_detail', song_id=song_id)
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
