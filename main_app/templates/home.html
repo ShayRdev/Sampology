@@ -2,4 +2,27 @@
 
 {% block content %}
   <h1>Home Page</h1>
+
+  <form action="{% url 'create_post' %}" method="POST">
+    {% csrf_token %}
+    {{ posts_form.as_p }}
+    <input type="submit" class="btn" value="Post">
+  </form>
+
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr><th></th><th></th></tr>
+      </thead>
+      <tbody>
+        {% for item in post %}
+          <tr>
+            <td>{{item.title}}</td>
+            <td>{{item.content}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
 {% endblock %}

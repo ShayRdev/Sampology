@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, ListView
-from .models import Gear, Song
+from .models import Gear, Song, Post
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-
+from .forms import PostForm
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    post = Post.objects.all()
+    posts_form = PostForm()
+    return render(request, 'home.html', {
+        'post': post,
+        'posts_form': posts_form,
+    })
 
 def songs_index(request):
     songs = Song.objects.all()
@@ -25,7 +30,6 @@ def song_detail(request, song_id):
         'gear_used': gear_used_song_doesnt_have
     })
 
-
 class SongCreate(CreateView):
     model = Song
     fields = ['artist', 'name', 'release_date',]
@@ -33,7 +37,6 @@ class SongCreate(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-
 
 class SongUpdate(UpdateView):
     model = Song
@@ -61,6 +64,13 @@ def unassoc_gear(request, song_id, gear_id):
     Song.objects.get(id=song_id).gear_used.remove(gear_id)
     return redirect('songs_detail', song_id=song_id)
 
+def create_post(request):
+    form = PostForm(request.POST)
+    if form.is_valid():
+        new_post = form.save(commit=False)
+        new_post.save()
+    return redirect('home')
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -68,7 +78,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('home')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
