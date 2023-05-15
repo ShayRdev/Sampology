@@ -13,13 +13,10 @@
   {% for gear in gear_list %}
     <div class="col-md-4">
       <a href="{% url 'gears_detail' gear.id %}" class="text-decoration-none">
-        <div class="card mb-4">
+        <div class="card mb-4 bg-dark">
           <div class="card-body">
             <h5 class="card-title">{{ gear.gear_name }}</h5>
-            <p class="card-text">Brand: {{ gear.gear_brand }}</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated: {{ gear.updated_at }}</small>
+            <p class="card-text text-white">Brand: {{ gear.gear_brand }}</p>
           </div>
         </div>
       </a>
