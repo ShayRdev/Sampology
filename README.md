@@ -51,27 +51,6 @@ Home Page renders every individual post card and create new post form
 
 
 ERD
-
-https://lucid.app/documents/view/3db815ed-c45b-4de2-af2c-6dd319083dc5
-
-wireframe
-
-https://app.moqups.com/Jp2qaYFiFfOGw70r46GeDUSsP9iEkRFq/view/page/a57f5c842
-
-icebox
-
-https://trello.com/b/0XdI0Zrr/project-3-sampler
-
-
-
-
-
-
-
-
-
-
-ERD
 https://lucid.app/documents/view/7a0a273d-5df5-4d58-9f79-127c9d5f6b9c
 
 Trello
