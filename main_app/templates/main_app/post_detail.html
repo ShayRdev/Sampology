@@ -6,8 +6,8 @@
     <div class="bg-secondary" style="border-radius: 5px; padding-top: 20px; padding-right: 20px; padding-left: 20px; padding-bottom: 200px; margin-bottom: 10px;">
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <div>
-            <h4 style="text-light">{{post.title}}</h4>
-            <p style="text-light padding-bottom: 20px;">{{post.content}}</p>
+                <h4 style="text-light">{{post.title}}</h4>
+                <p style="text-light padding-bottom: 20px;">{{post.content}}</p>
             </div>
             <a href="{% url 'songs_detail' post.song.id %}" class="card-link">
                 <div class="card position-relative" style="border: none; border-radius: 20px; overflow: hidden; background: linear-gradient(to bottom, #0d0d0d, #323235); color: #ffffff;">
@@ -20,6 +20,11 @@
                 </div>
             </a>
         </div>
+        {% if user.is_authenticated and user == post.user %}
+            <div class="d-flex align-items-center">
+                <button class="btn btn-outline-danger me-4 text-white" onclick="location.href='{% url 'posts_delete' post.id %}'">Delete</button>
+            </div>
+        {% endif %}
     </div>
     <div class="card-header">
         <span class="text-secondary">Posted by: {{post.user.username}} </span>  

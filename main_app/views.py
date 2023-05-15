@@ -19,7 +19,7 @@ def home(request):
     })
 
 @login_required
-def home_detail(request, post_id):
+def post_detail(request, post_id):
     post = Post.objects.get(id=post_id)
     return render(request, 'main_app/post_detail.html', {
         'post': post
@@ -42,7 +42,11 @@ def song_detail(request, song_id):
         'gear_used': gear_used_song_doesnt_have
     })
 
-class SongCreate(CreateView):
+class PostDelete(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = '/home'
+
+class SongCreate(LoginRequiredMixin, CreateView):
     model = Song
     fields = ['artist', 'name', 'release_date',]
 
