@@ -19,6 +19,13 @@ def home(request):
     })
 
 @login_required
+def home_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    return render(request, 'main_app/post_detail.html', {
+        'post': post
+    })
+
+@login_required
 def songs_index(request):
     songs = Song.objects.all()
     return render(request, 'songs/index.html', { 

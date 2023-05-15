@@ -83,6 +83,7 @@
   </div>
 
   {% for item in post %}
+  <a href="{% url 'post_detail' item.id %}" class="text-light">
   <div class="card mb-0 bg-dark border border-secondary" style=" border-radius: 0px;">
     <div class="card-header">
       <small class="text-secondary">Posted by: {{item.user.username}} </small>  
@@ -97,6 +98,7 @@
       </blockquote>
     </div>
   </div>
+  </a>
 {% endfor %}
   </div>
 
