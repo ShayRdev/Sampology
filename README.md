@@ -8,7 +8,7 @@
 
 # Getting Started
 
-[click on this link to check out Sampology!](https://sampler.herokuapp.com/)
+[click on this link to check out Sampology!](https://sampology.herokuapp.com/)
 
 ###  Sign Up and Login to start typing away a new post
 
@@ -24,7 +24,7 @@
 
 # Screenshots
 
-![HomePage](https://i.imgur.com/vQjcyQL.png)
+![HomePage]()
 Home Page renders every individual post card and create new post form
 
 ![Show post page](https://i.imgur.com/ntE1q6F.png)
