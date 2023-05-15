@@ -5,6 +5,7 @@ urlpatterns = [
     path('home/create_post/', views.create_post, name="create_post"),
     path('', views.home, name='home'),
     path('home/', views.home, name='home'),
+    # path('home/post_details', views.PostDetail.as_view(), name="post_detail"),
     path('songs/create', views.SongCreate.as_view(), name="songs_create"),
     path("songs/<int:song_id>/", views.song_detail, name="songs_detail"),
     path("songs/<int:pk>/update", views.SongUpdate.as_view(), name="songs_update"),

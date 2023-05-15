@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>Greetings, Gear Sleuths!</h1>
+
 
 
 <div id="carouselExampleDark" class="carousel carousel-light slide" data-bs-ride="carousel">
@@ -42,8 +44,18 @@
   </button>
 </div>
 
-
-
+<div class=" greeting-card container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="text-left">
+        <p class="lead">Welcome to Sampology, the community hub where musicians gather to discover the tools that shape the soundscapes of their favorite artists.</p>
+        <p>Whether you're seeking to emulate the ethereal tones of Cocteau Twins or the gritty punch of Black Sabbath, Sampology is the place to be.</p>
+        <p>Create a post and ask the community to help you uncover the gear that will elevate your sound to the next level.</p>
+        <p>Join us on this sonic journey and let's explore the world of music together!</p>
+      </div>
+    </div>
+  </div>
+</div>
 
   <div class="d-flex justify-content-end pt-2 mb-4 sticky-top">
     <button type="button" class="btn btn-dark ms-auto" data-bs-toggle="modal" data-bs-target="#postModal">Create Post</button>
@@ -70,14 +82,15 @@
     </div>
   </div>
 
-
-  <small> {{item.user.username}} </small>
   {% for item in post %}
-  <div class="card mb-0 bg-dark" style="border-radius: 0px;">
+  <div class="card mb-0 bg-dark border border-secondary" style=" border-radius: 0px;">
     <div class="card-header">
+      <small class="text-secondary">Posted by: {{item.user.username}} </small>  
+    </div>
+    <div class="card-header" style="background: #32323589;">
       {{ item.title }}
     </div>
-    <div class="card-body" style="background: #32323589;">
+    <div class="card-body pb-4" style="background: #32323589;">
       <blockquote class="blockquote mb-0">
         <p>{{ item.content }}</p>
         <footer class="blockquote-footer">Song:<cite title="Source Title"> {{ item.song.name }}</cite></footer>

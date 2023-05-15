@@ -1,14 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ song.artist }} - {{ song.name }}</h1>
 
-    <div class="row">
+<div class="d-flex justify-content-between">
+    <h1 class="me-4">{{ song.artist }} - {{ song.name }}</h1>
+    <div class="d-flex align-items-center">
+        <button class="btn btn-outline-dark text-white" onclick="location.href='{% url 'songs_update' song.id %}'">Edit</button>
+        <button class="btn btn-outline-danger me-4 text-white" onclick="location.href='{% url 'songs_delete' song.id %}'">Delete</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label class="form-label">Release Date:</label>
+            <p>{{ song.release_date }}</p>
+        </div>
+        
         <div class="col-md-6">
             <div class="mb-3">
-                <label class="form-label">Release Date:</label>
-                <p>{{ song.release_date }}</p>
             </div>
+        </div>
 
             <div class="mb-3">
                 <h3>Gear Used</h3>
@@ -16,20 +28,20 @@
                 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         {% for gear in song.gear_used.all %}
-                            <a href=" {% url 'gears_detail' gear.id %}" class="text-decoration-none">
-                            <div class="col">
-                                <div class="card">
-                                    <img src="https://i.imgur.com/xLL5u5Q.png" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ gear.gear_brand }} {{ gear.gear_name }}</h5>
-                                        <form action="{% url 'unassoc_gear' song.id gear.id %}" method="POST">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger">Remove</button>
-                                        </form>
-                                    </div>
+                        <div class="col">
+                            <a href="{% url 'gears_detail' gear.id %}" class="card-link">
+                              <div class="card position-relative" style="border: none; border-radius: 20px; overflow: hidden; background: linear-gradient(to bottom, #0d0d0d, #323235); color: #ffffff;">
+                                <img src="https://i.imgur.com/xLL5u5Q.png" class="card-img-top" alt="...">
+                                <div class="card-body position-absolute bottom-0 w-100 bg-dark" style="opacity: 0.8;">
+                                  <h5 class="card-title">{{ gear.gear_brand }} {{gear.gear_name}} </h5>
+                                  <form action="{% url 'unassoc_gear' song.id gear.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger">Remove</button>
+                                </form>
                                 </div>
-                            </div>
-                        </a>
+                              </div>
+                            </a>
+                          </div>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -37,31 +49,30 @@
                 {% endif %}
             </div>
 
+
             <div class="mb-3">
                 <h3>Add Gear</h3>
-                <div class="row">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
                     {% for gear in gear_used.all %}
-                        <div class="col-md-4">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ gear.gear_brand }} {{ gear.gear_name }}</h5>
-                                    <form action="{% url 'assoc_gear' song.id gear.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn btn-primary">Add</button>
-                                    </form>
-                                </div>
+                    <div class="col">
+                        <a href="{% url 'gears_detail' gear.id %}" class="card-link">
+                          <div class="card position-relative" style="border: none; border-radius: 20px; overflow: hidden; background: linear-gradient(to bottom, #0d0d0d, #323235); color: #ffffff;">
+                            <img src="https://i.imgur.com/xLL5u5Q.png" class="card-img-top" alt="...">
+                            <div class="card-body position-absolute bottom-0 w-100 bg-dark" style="opacity: 0.8;">
+                              <h5 class="card-title">{{ gear.gear_brand }} {{gear.gear_name}} </h5>
+                              <form action="{% url 'assoc_gear' song.id gear.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-light btn-sm">Add to Gear Used</button>
+                              </form>
                             </div>
-                        </div>
+                          </div>
+                        </a>
+                      </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="mb-3">
-                <button class="btn btn-primary"><a href="{% url 'songs_update' song.id %}" class="text-white">Edit Song</a></button>
-                <button class="btn btn-danger"><a href="{% url 'songs_delete' song.id %}" class="text-white">Delete Song</a></button>
-            </div>
-        </div>
     </div>
+
 {% endblock %}
