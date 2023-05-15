@@ -2,26 +2,24 @@
 {% load bootstrap5 %}
 {% block content %}
 
-<h1 class="mb-4">Songs</h1>
-
 <div class="mb-4">
   <a href="{% url 'songs_create' %}" class="btn btn-primary">Add a Song</a>
 </div>
 
-<div class="row row-cols-1 row-cols-md-2 g-4">
+<div class="row row-cols-1 row-cols-md-4 g-4">
   {% for song in songs %}
-    <div class="col">
-      <a href="{% url 'songs_detail' song.id %}" class="card-link">
-        <div class="card ">
-          <img src="https://i.imgur.com/aVgqvCC.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{ song.name }}</h5>
-            <p class="card-text">By {{ song.artist }}</p>
-            <p class="card-text"><small class="text-muted">Released on {{ song.release_date }}</small></p>
-          </div>
+  <div class="col">
+    <a href="{% url 'songs_detail' song.id %}" class="card-link">
+      <div class="card position-relative" style="border: none; border-radius: 20px; overflow: hidden; background: linear-gradient(to bottom, #0d0d0d, #323235); color: #ffffff;">
+        <img src="https://i.imgur.com/aVgqvCC.jpeg" class="card-img-top" alt="...">
+        <div class="card-body position-absolute bottom-0 w-100 bg-dark" style="opacity: 0.8;">
+          <h5 class="card-title">{{ song.name }}</h5>
+          <small class="card-text">By {{ song.artist }}</small>
+          <p class="card-text"><small class="text-muted">Released on {{ song.release_date }}</small></p>
         </div>
-      </a>
-    </div>
+      </div>
+    </a>
+  </div>
   {% endfor %}
 </div>
 
