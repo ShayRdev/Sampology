@@ -33,7 +33,11 @@ html {
     padding-left: 20px;
   }
   
-  /* Main content styles */
+  .glow-link:hover {
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.546);
+    color: #00ff3cb0 !important;
+  }
+
   main {
     margin: 1rem;
   }
@@ -130,12 +134,29 @@ html {
   color: #ffffff !important;
 } */
 
-/* .card:hover {
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  background: hsla(0, 2%, 40%, 0.813) !important;
-} */
+.post-card {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.post-card:hover::before {
+  content: "";
+  position: absolute;
+  width: 130%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  z-index: 1;
+  animation: shimmer 1s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 
 .card-img-top {
   height: 200px;
