@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 <h1 class="greeting">Greetings, Gear Sleuths!</h1>
 
 
@@ -13,21 +14,21 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="8000">
-      <img src="https://i.imgur.com/XsNwmOB.jpeg" class="d-block w-100" alt="...">
+      <img src="{% static 'main_app/images/She_Past_Away.jpeg' %}" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.7);">
         <h5>She Past Away</h5>
         <p>She Past Away uses Alesis SAMPLEPAD PRO for triggering live drum samples </p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="8000">
-      <img src="https://www.kcrw.com/music/articles/primavera-sound-la-boy-harsher-darkside-chai-divino-nino-khruangbin/@@images/image/page-header?v=1664230929.2" class="d-block w-100" alt="...">
+      <img src="{% static 'main_app/images/Boy_Harsher.jpeg' %}" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Boy Harsher</h5>
         <p>Augustus Muller uses the Sequential Prophet X 61 to incorperate a moody and cinematic quality to their sound </p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="8000">
-      <img src="https://i.ytimg.com/vi/NLi2srz7bgU/maxresdefault.jpg" class="d-block w-100" alt="...">
+      <img src="{% static 'main_app/images/Tommy.jpg' %}" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Tommy Wright III</h5>
         <p>Tommy Wright III can often be found sampling Roland's TR-808 for his agressive and sparse drum machine heavy beats </p>
