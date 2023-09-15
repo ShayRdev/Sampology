@@ -83,10 +83,10 @@ WSGI_APPLICATION = 'sampology.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shayrodriguez0/Sampology',
-        'USER': 'shayrodriguez0',
+        'NAME': 'sampology',
+        'USER': 'shayrdev',
         'PASSWORD': os.environ['DB_PASSWORD'],
-        'HOST': 'db.bit.io',
+        'HOST': 'sampology.cs9ik247sprs.us-east-2.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
