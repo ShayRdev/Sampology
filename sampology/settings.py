@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sampology',
-        'USER': 'shayrdev',
+        'USER': 'shayrodriguez',
         'PASSWORD': os.environ['DB_PASSWORD'],
-        'HOST': 'sampology.cs9ik247sprs.us-east-2.rds.amazonaws.com',
+        'HOST': 'sampology.cf6nedenwtv9.us-east-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
