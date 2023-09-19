@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/shayrodriguez/SEIR-2-21-23/projects/sampology-clone/Sampology/venv"
+VIRTUAL_ENV="/Users/shayalexander/code/Sampology/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

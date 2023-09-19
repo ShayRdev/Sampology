@@ -29,7 +29,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/shayrodriguez/SEIR-2-21-23/projects/sampology-clone/Sampology/venv"
+set -gx VIRTUAL_ENV "/Users/shayalexander/code/Sampology/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
