@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
+{% load static %}
 
 {% block content %}
 
@@ -11,9 +12,10 @@
 
 <div class="row">
   {% for gear in gear_list %}
-    <div class="col-md-4">
-      <a href="{% url 'gears_detail' gear.id %}" class="text-decoration-none">
-        <div class="card mb-4 bg-dark">
+  <div class="col-md-4">
+    <a href="{% url 'gears_detail' gear.id %}" class="text-decoration-none">
+      <div class="card mb-4 bg-dark " style="border: none; border-radius: 20px; overflow: hidden; background: linear-gradient(to bottom, #0d0d0d, #323235); color: #ffffff;">
+          <img src="{% static 'main_app/images/gear_icon.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{ gear.gear_name }}</h5>
             <p class="card-text text-white">Brand: {{ gear.gear_brand }}</p>
